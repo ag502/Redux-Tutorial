@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import {useSelector} from 'react-redux'
 import {Link} from 'react-router-dom'
 import ReactionButtons from "./ReactionButtons";
+import PostAuthor from "./PostAuthor";
 
 const PostsList = () => {
     const posts = useSelector(state => state.posts)
@@ -13,6 +14,9 @@ const PostsList = () => {
         return (
             <article className="post-excerpt" key={post.id}>
                 <h3>{post.title}</h3>
+                <div>
+                    <PostAuthor userId={post.id}/>
+                </div>
                 <p className="post-content">{post.content.substring(0, 100)}</p>
                 <ReactionButtons post={post}/>
                 <Link to={`/posts/${post.id}`} className="button muted-button">
